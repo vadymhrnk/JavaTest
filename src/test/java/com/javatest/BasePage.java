@@ -1,4 +1,5 @@
 package com.javatest;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -40,6 +41,7 @@ public class BasePage {
 
     @FindBy(xpath = "//*[contains(@class, 'xp__button')]")
     private WebElement SearchButton;
+
 
     public void inputDestination(String destination) {
         destinationInputField.sendKeys(destination);

@@ -1,6 +1,5 @@
 package com.javatest;
 
-import org.checkerframework.checker.units.qual.C;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -9,10 +8,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
 
 public class LodgingCheckTest {
     public static BasePage basePage;
+    public static SearchPage searchPage;
     public static WebDriver driver;
 
     @BeforeClass
@@ -23,17 +22,25 @@ public class LodgingCheckTest {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get(ConfProperties.getProperty("testpage"));
-
     }
     @Test
-    public void basePageTest() throws InterruptedException {
+    public void searchLodgingTest() {
         basePage = new BasePage(driver);
+        searchPage = new SearchPage(driver);
         basePage.inputDestination("New York");
         basePage.clickCalendarInput();
         basePage.clickDecreaseAdultsButton();
         basePage.clickSearchButton();
-        Thread.sleep(3000);
-        Assert.assertEquals(1,1);
+
+        for (int i = 0; i<searchPage.getAddressList().size(); i++)
+        {
+            Assert.assertTrue("Property card don't contain \"New York\"", (searchPage.getAddressList().get(i).getText().contains("New York")));
+        }
+
+        for (int i = 0; i<searchPage.getNightsList().size(); i++)
+        {
+            Assert.assertTrue("Property card don't contain \"29 nights\"", (searchPage.getNightsList().get(i).getText().contains("29 nights")));
+        }
     }
     @AfterClass
     public static void tearDown() {

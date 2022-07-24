@@ -22,14 +22,17 @@ public class LodgingCheckTest {
 
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-//        driver.navigate().to("testpage");
         driver.get(ConfProperties.getProperty("testpage"));
 
     }
     @Test
-    public void basePageTest(){
+    public void basePageTest() throws InterruptedException {
         basePage = new BasePage(driver);
-        basePage.inputDestination("New York, New York State, United States");
+        basePage.inputDestination("New York");
+        basePage.clickCalendarInput();
+        basePage.clickDecreaseAdultsButton();
+        basePage.clickSearchButton();
+        Thread.sleep(3000);
         Assert.assertEquals(1,1);
     }
     @AfterClass

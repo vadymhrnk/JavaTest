@@ -1,1 +1,1 @@
-someTest, searchLodgingTest, 
+NegativeNewsletterSubscription_WhenLoggedOut_ShouldGetInvalidMessage, SearchLodging_WhenLoggedOut_ShouldFindPropertyCard, 

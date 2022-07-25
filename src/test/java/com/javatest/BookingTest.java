@@ -7,9 +7,10 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.text.MessageFormat;
 import java.time.Duration;
 
-public class LodgingCheckTest {
+public class BookingTest {
     public static BasePage basePage;
     public static SearchPage searchPage;
     public static WebDriver driver;
@@ -25,9 +26,10 @@ public class LodgingCheckTest {
     }
 
     @Test
-    public void searchLodgingTest() {
+    public void SearchLodging_WhenLoggedOut_ShouldFindPropertyCard() {
         basePage = new BasePage(driver);
         searchPage = new SearchPage(driver);
+
         basePage.inputDestination("New York");
         basePage.clickCalendarInput();
         basePage.clickDecreaseAdultsButton();
@@ -42,8 +44,15 @@ public class LodgingCheckTest {
         }
     }
     @Test
-    public void someTest(){
+    public void NegativeNewsletterSubscription_WhenLoggedOut_ShouldGetInvalidMessage(){
+        basePage = new BasePage(driver);
+        String expectedString = "Error:\n" + "Please enter a valid email address.";
 
+        basePage.inputNewsletterSubscription("test@test");
+        basePage.clickNewsletterButton();
+        String actualString = basePage.GetInvalidMessage();
+
+        Assert.assertEquals(MessageFormat.format("{0} is not equal {1}", expectedString, actualString),expectedString, actualString);
     }
 
     @AfterClass

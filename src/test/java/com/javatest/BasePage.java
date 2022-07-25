@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
@@ -42,6 +44,15 @@ public class BasePage {
     @FindBy(xpath = "//*[contains(@class, 'xp__button')]")
     private WebElement SearchButton;
 
+    @FindBy(xpath = "//*[@id=\"newsletter_to\"]")
+    private WebElement newsletterSubscriptionField;
+
+    @FindBy(xpath = "//*[@id=\"newsletter_button_footer\"]")
+    private WebElement newsletterButton;
+
+    @FindBy(xpath = "//*[@id=\"emk-footer\"]/div/div[1]/p[1]")
+    private WebElement invalidEmailMessage;
+
 
     public void inputDestination(String destination) {
         destinationInputField.sendKeys(destination);
@@ -76,5 +87,16 @@ public class BasePage {
 
     public void clickSearchButton() {
         SearchButton.click();
+    }
+    public void inputNewsletterSubscription(String email){
+        newsletterSubscriptionField.sendKeys(email);
+    }
+    public void clickNewsletterButton(){
+        newsletterButton.click();
+    }
+    public String GetInvalidMessage(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOf(invalidEmailMessage));
+        return invalidEmailMessage.getText();
     }
 }

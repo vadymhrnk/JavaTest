@@ -43,8 +43,9 @@ public class BookingTest {
             Assert.assertTrue("Property card don't contain \"29 nights\"", (searchPage.getNightsList().get(i).getText().contains("29 nights")));
         }
     }
+
     @Test
-    public void NegativeNewsletterSubscription_WhenLoggedOut_ShouldGetInvalidMessage(){
+    public void NegativeNewsletterSubscription_WhenLoggedOut_ShouldGetInvalidMessage() {
         basePage = new BasePage(driver);
         String expectedString = "Error:\n" + "Please enter a valid email address.";
 
@@ -52,7 +53,7 @@ public class BookingTest {
         basePage.clickNewsletterButton();
         String actualString = basePage.GetInvalidMessage();
 
-        Assert.assertEquals(MessageFormat.format("{0} is not equal {1}", expectedString, actualString),expectedString, actualString);
+        Assert.assertEquals(MessageFormat.format("{0} is not equal {1}", expectedString, actualString), expectedString, actualString);
     }
 
     @AfterClass

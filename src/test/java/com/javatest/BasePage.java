@@ -88,13 +88,16 @@ public class BasePage {
     public void clickSearchButton() {
         SearchButton.click();
     }
-    public void inputNewsletterSubscription(String email){
+
+    public void inputNewsletterSubscription(String email) {
         newsletterSubscriptionField.sendKeys(email);
     }
-    public void clickNewsletterButton(){
+
+    public void clickNewsletterButton() {
         newsletterButton.click();
     }
-    public String GetInvalidMessage(){
+
+    public String GetInvalidMessage() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(invalidEmailMessage));
         return invalidEmailMessage.getText();

@@ -26,10 +26,11 @@ public class SearchPage {
     @FindAll({@FindBy(xpath = "//*[contains(@data-testid, 'price-for-x-nights')]")})
     private List<WebElement> propertyCardNights;
 
-    public List<WebElement> getAddressList(){
+    public List<WebElement> getAddressList() {
         return propertyCardAddresses;
     }
-    public List<WebElement> getNightsList(){
+
+    public List<WebElement> getNightsList() {
         return propertyCardNights;
     }
 

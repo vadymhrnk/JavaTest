@@ -69,12 +69,12 @@ public class BasePage {
 
     }
 
-    public void clickDecreaseAdultsButton(){
+    public void clickDecreaseAdultsButton() {
         guestsInput.click();
         decreaseAdultsButton.click();
     }
 
-    public void clickSearchButton(){
+    public void clickSearchButton() {
         SearchButton.click();
     }
 }
